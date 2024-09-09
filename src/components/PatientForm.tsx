@@ -9,10 +9,10 @@ export default function PatientForm() {
       const { register, handleSubmit, formState: { errors } } = useForm<DraftPatient>();
 
       const registerPatient = (data: DraftPatient) => {
-            console.log('Nuevo Paciente')
+            console.log(data)
       }
 
-      console.log(errors);
+      //console.log(errors);
 
       return (
             <div className="md:w-1/2 lg:w-2/5 mx-5">
