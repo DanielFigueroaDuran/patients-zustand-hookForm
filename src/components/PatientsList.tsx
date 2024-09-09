@@ -1,7 +1,9 @@
+import { usePatientStorage } from "../store/store"
 
-type Props = {}
 
-const PatientsList = (props: Props) => {
+const PatientsList = () => {
+      const patients = usePatientStorage(state => state.patients);
+      console.log(patients);
       return (
             <div>PtientsList</div>
       )
