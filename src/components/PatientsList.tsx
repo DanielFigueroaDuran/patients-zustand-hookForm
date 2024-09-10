@@ -4,7 +4,7 @@ import PatientDetails from "./PatientDetails";
 
 const PatientsList = () => {
       const patients = usePatientStorage(state => state.patients);
-      console.log(patients);
+      //console.log(patients);
       return (
             <div className="md:w-1/2 lg:3/5 md:h-screen overflow-y-scroll">
                   {patients.length
@@ -15,12 +15,13 @@ const PatientsList = () => {
                                           Administra tus {''}
                                           <span className="text-indigo-600 font-bold">Pacientes y Citas</span>
                                     </p>
-                                    {patients.map(patient => {
+                                    {patients.map(patient => (
                                           <PatientDetails
                                                 key={patient.id}
                                                 patient={patient}
                                           />
-                                    })}
+                                    ))
+                                    }
                               </>
                         )
                         : (
