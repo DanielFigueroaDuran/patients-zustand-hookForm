@@ -8,7 +8,10 @@ type PatientDetailsProps = {
 
 const PatientDetails = ({ patient }: PatientDetailsProps) => {
 
-      const deletePatient = usePatientStorage((state) => state.deletePatient);
+      // const deletePatient = usePatientStorage((state) => state.deletePatient);
+      // const getPatientById = usePatientStorage((state) => state.getPatientById)
+
+      const { deletePatient, getPatientById } = usePatientStorage();
       //console.log(patient.name);
       return (
             <div className="mx-5 my-10 px-5 py-6 bg-white shadow-md rounded-xl ">
@@ -46,6 +49,7 @@ const PatientDetails = ({ patient }: PatientDetailsProps) => {
                         <button
                               type="button"
                               className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
+                              onClick={() => { getPatientById(patient.id) }}
                         >
                               Editar
                         </button>
