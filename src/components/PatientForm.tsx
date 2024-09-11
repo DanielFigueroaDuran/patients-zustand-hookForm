@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import Error from "./Error";
 import { DraftPatient } from "../types";
 import { usePatientStorage } from "../store/store";
+import { useEffect } from "react";
 
 
 export default function PatientForm() {
@@ -10,10 +11,21 @@ export default function PatientForm() {
 
       //const addPatient = usePatientStorage(state => state.addPatient);
 
-      const { addPatient, activeId } = usePatientStorage();
+      const { addPatient, activeId, patients } = usePatientStorage();
+      const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<DraftPatient>();
 
+      useEffect(() => {
+            if (activeId) {
+                  const activePatient = patients.filter(patien => patien.id === activeId)[0]
+                  //console.log(activePatient);
 
-      const { register, handleSubmit, formState: { errors }, reset } = useForm<DraftPatient>();
+                  setValue('name', activePatient.name);
+                  setValue('caretaker', activePatient.caretaker);
+                  setValue('email', activePatient.email);
+                  setValue('date', activePatient.date);
+                  setValue('symptoms', activePatient.symptoms);
+            }
+      }, [activeId]);
 
       const registerPatient = (data: DraftPatient) => {
             addPatient(data);
@@ -25,7 +37,7 @@ export default function PatientForm() {
 
       return (
             <div className="md:w-1/2 lg:w-2/5 mx-5">
-                  <h2 className="font-black text-3xl text-center">Seguimiento Pacientes {activeId}</h2>
+                  <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
 
                   <p className="text-lg mt-5 text-center mb-10">
                         Añade Pacientes y {''}
