@@ -1,14 +1,12 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form"
+import { toast } from "react-toastify";
 import Error from "./Error";
 import { DraftPatient } from "../types";
 import { usePatientStorage } from "../store/store";
-import { useEffect } from "react";
-
 
 export default function PatientForm() {
-
-      // const { addPatient } = usePatientStorage(); // esta es una forma 
-
+      // const { addPatient } = usePatientStorage(); // esta es una forma
       //const addPatient = usePatientStorage(state => state.addPatient);
 
       const { addPatient, activeId, patients, updatePatient } = usePatientStorage();
@@ -33,8 +31,8 @@ export default function PatientForm() {
                   updatePatient(data)
             } else {
                   addPatient(data);
+                  toast.success('Paciente Registrado Correctamente')
             }
-
 
             reset();
       }
